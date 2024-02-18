@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-02-18T23:07:54+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">sal-log</title><subtitle>Documenting my journey on data science, (health-)tech and beyond</subtitle><entry><title type="html">A Novel NLP-Based Approach for Stock Market Visualization and Insight generation</title><link href="http://localhost:4000/nlp/finance/2024/02/15/StockViz.html" rel="alternate" type="text/html" title="A Novel NLP-Based Approach for Stock Market Visualization and Insight generation" /><published>2024-02-15T13:55:47+01:00</published><updated>2024-02-15T13:55:47+01:00</updated><id>http://localhost:4000/nlp/finance/2024/02/15/StockViz</id><content type="html" xml:base="http://localhost:4000/nlp/finance/2024/02/15/StockViz.html"><![CDATA[<h1 id="background">Background</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-02-18T23:14:43+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">sal-log</title><subtitle>Documenting my journey on data science, (health-)tech and beyond</subtitle><entry><title type="html">A Novel NLP-Based Approach for Stock Market Visualization and Insight generation</title><link href="http://localhost:4000/nlp/finance/2024/02/15/StockViz.html" rel="alternate" type="text/html" title="A Novel NLP-Based Approach for Stock Market Visualization and Insight generation" /><published>2024-02-15T13:55:47+01:00</published><updated>2024-02-15T13:55:47+01:00</updated><id>http://localhost:4000/nlp/finance/2024/02/15/StockViz</id><content type="html" xml:base="http://localhost:4000/nlp/finance/2024/02/15/StockViz.html"><![CDATA[<h1 id="background">Background</h1>
 
 <p>In the fast-evolving landscape of data science, financial data emerges as a prime candidate for analytical exploration, offering a unique blend of accessibility, voluminous datasets, and significant impact. Unlike many other data types, financial data skirts around privacy concerns, enabling researchers and analysts to delve deep into trends, patterns, and insights that drive market dynamics. The sheer volume of financial data, coupled with its direct influence on economic decisions, makes it an ideal playground for data scientists looking to make a tangible impact.</p>
 
@@ -118,8 +118,7 @@ The following steps were applied:</p>
   <li>Removal words occurring in less than 5 documents</li>
 </ul>
 
-<p>After this preprocessing, the unique words were 6897 (4165286, or ~70% of the raw version), document length was 86 (most within 25-177). 
-When we visualize these t-SNE embeddings and color-code each point (representing a company) based on its sector, a fascinating pattern emerges.</p>
+<p>After this preprocessing, the unique words were 6897 (4165286, or ~70% of the raw version), document length was 86 (most within 25-177).</p>
 
 <p><em>Sparse embeddings</em>. Preprocessed description were embedded using a TF-IDF Transformers as in <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">sklearn.feature_extraction.text.TfidfVectorizer</a> using a vocabulary size of 1000.</p>
 
@@ -130,7 +129,11 @@ When we visualize these t-SNE embeddings and color-code each point (representing
 We used <a href="https://huggingface.co/BAAI/bge-small-en-v1.5">bge_small_1.5</a> a state of the art contextual embeddings showing best performances on several tasks on the <a href="https://huggingface.co/spaces/mteb/leaderboard">MTEB leaderboard</a> at its embedding dimensionality size (384) at the time of this post. Raw text data was encoded (i.e. no preprocessing) taking advantage of sub-word Tokenizer.
 <a href="https://arxiv.org/pdf/2309.07597.pdf">C-Pack: Packaged Resources To Advance General Chinese Embedding</a></p>
 
-<p>With this technique applied to our dataset, we’ve arrived at compelling results.</p>
+<p>When we visualize these t-SNE embeddings and color-code each point (representing a company) based on its sector, a fascinating pattern emerges.</p>
+
+<p>To enrich our visualization further, we’ve integrated market capitalization data by varying the size of each point based on the company’s market cap. This addition provides a layer of financial insight, allowing viewers to instantly gauge the economic scale of each company within its cluster. Larger points signify companies with greater market caps, offering a quick visual reference to distinguish between major players and smaller entities within the same sector. This enhanced visualization technique transforms our dataset into an intuitive, informative map of the stock market, where both industry relationships and financial stature are simultaneously conveyed, providing stakeholders with a comprehensive understanding of market dynamics at a glance.</p>
+
+<p>Example visualizations obtained by this technique:</p>
 
 <p><img src="/assets/TF.gif" alt="Alt text" /></p>
 
@@ -138,9 +141,7 @@ We used <a href="https://huggingface.co/BAAI/bge-small-en-v1.5">bge_small_1.5</a
 
 <p><img src="/assets/BGE.gif" alt="Alt text" /></p>
 
-<p>We can observe distinct clusters forming, such as a cluster of banks or bitcoin miners, indicating that our embeddings effectively capture semantic and business similarities. This visualization not only confirms the robustness of our embedding techniques but also showcases the potential of t-SNE to reveal underlying industry dynamics and relationships that might not be apparent from traditional analysis methods.</p>
-
-<p>To enrich our visualization further, we’ve integrated market capitalization data by varying the size of each point based on the company’s market cap. This addition provides a layer of financial insight, allowing viewers to instantly gauge the economic scale of each company within its cluster. Larger points signify companies with greater market caps, offering a quick visual reference to distinguish between major players and smaller entities within the same sector. This enhanced visualization technique transforms our dataset into an intuitive, informative map of the stock market, where both industry relationships and financial stature are simultaneously conveyed, providing stakeholders with a comprehensive understanding of market dynamics at a glance.</p>
+<p>We can observe distinct clusters forming, such as a cluster of utilities or bitcoin miners, indicating that our embeddings effectively capture semantic and business similarities. This visualization not only confirms the robustness of our embedding techniques but also showcases the potential of t-SNE to reveal underlying industry dynamics and relationships that might not be apparent from traditional analysis methods.</p>
 
 <h1 id="insights">Insights</h1>
 
